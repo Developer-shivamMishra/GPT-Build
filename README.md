@@ -34,3 +34,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+chapter 1: Global provider(Theme and Query)
+
+1.1 Theme provider: components/provider/theme-provider.tsx
+    - Theme provider is a global provider that provides the theme to the entire application.
+
+1.2 Query provider: components/provider/query.tsx
+    - Query provider is a global provider that provides the query to the entire application
+    - Query provider is used to fetch data from the server and cache the data for a certain time
+    
+1.3  Wire provider in layout.tsx
+    - Wire the theme provider and query provider in the layout.tsx file
+
+chapter 2: UI Components
