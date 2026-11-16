@@ -49,4 +49,8 @@ chapter 1: Global provider(Theme and Query)
 1.3  Wire provider in layout.tsx
     - Wire the theme provider and query provider in the layout.tsx file
 
-chapter 2: UI Components
+chapter 2: Prisma and database setup
+
+2.1 Prisma and database setup
+    - Prisma is a database ORM that provides a database client and a schema language for the database.
+    -used Neon as the database
