@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/ui/provider/theme-provider";
+import { ThemeScript } from "@/components/ui/provider/theme-script";
 import { QueryProvider } from "@/components/ui/provider/query";
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning={true}
     >
       <body className="min-h-full flex flex-col">
+        <ThemeScript />
         <ClerkProvider>
         <QueryProvider>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
