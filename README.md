@@ -54,3 +54,5 @@ chapter 2: Prisma and database setup
 2.1 Prisma and database setup
     - Prisma is a database ORM that provides a database client and a schema language for the database.
     -used Neon as the database
+
+chapter 3: Authentication with clerk
