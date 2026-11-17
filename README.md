@@ -62,7 +62,18 @@ chapter 3: Authentication with clerk
     - Protected routes are routes that are protected and can only be accessed by authenticated users.
     - Onboarding user is a process that is used to onboard the user to the application.
 
-chapter 4: 
+chapter 4: conversation and message schema
 
         user -> conversation -> messages
-        
+        - user has many conversations
+        - conversation has many messages
+        - message belongs to a conversation
+        - message belongs to a user
+        - conversation belongs to a user
+        - user has many messages
+        - message has many conversations
+        - conversation has many users
+        - message has many users
+        - conversation has many messages
+
+chapter 5: server actions and react queries
