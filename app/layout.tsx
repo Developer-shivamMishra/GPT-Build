@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/ui/provider/theme-provider";
 import { QueryProvider } from "@/components/ui/provider/query";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -30,11 +31,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning={true}
     >
       <body className="min-h-full flex flex-col">
+        <ClerkProvider>
         <QueryProvider>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
         </QueryProvider>
+        </ClerkProvider>
         </body>
     </html>
   );
