@@ -56,3 +56,13 @@ chapter 2: Prisma and database setup
     -used Neon as the database
 
 chapter 3: Authentication with clerk
+    - Clerk is a authentication provider that provides a authentication solution for the application.
+    - used clerk to authenticate the user and store the user in the database.
+    Protected routes
+    - Protected routes are routes that are protected and can only be accessed by authenticated users.
+    - Onboarding user is a process that is used to onboard the user to the application.
+
+chapter 4: 
+
+        user -> conversation -> messages
+        
