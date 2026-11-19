@@ -77,3 +77,9 @@ chapter 4: conversation and message schema
         - conversation has many messages
 
 chapter 5: server actions and react queries
+    
+        - server actions are used to perform server-side operations
+         -message hooks
+         -useMessages.ts
+
+chapter 6: conversation list and details page
