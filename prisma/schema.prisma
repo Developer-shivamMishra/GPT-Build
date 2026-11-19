@@ -60,7 +60,7 @@ model Message {
   content   String @db.Text
   role      MessageRole
   status    MessageStatus @default(PENDING)
-  parts     Json
+  parts     Json?
   metadata  Json?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
