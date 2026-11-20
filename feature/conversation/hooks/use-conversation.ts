@@ -1,7 +1,11 @@
 "use client"
 
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useRouter } from "next/navigation"
 import {
+  createConversation,
+  deleteConversation,
+  getConversationList,
   updateConversation,
   type conversationListItem,
 } from "@/feature/conversation/actions/converstaion-action"
@@ -17,6 +21,63 @@ function sortConversations(conversations: conversationListItem[]) {
   return [...conversations].sort((a, b) => {
     if (a.ispinned !== b.ispinned) return a.ispinned ? -1 : 1
     return new Date(b.lastMessageAt).getTime() - new Date(a.lastMessageAt).getTime()
+  })
+}
+
+export function useConversationList() {
+  return useQuery({
+    queryKey: queryKeys.conversation.all,
+    queryFn: getConversationList,
+  })
+}
+
+export function useCreateConversation() {
+  const queryClient = useQueryClient()
+  const router = useRouter()
+
+  return useMutation({
+    mutationFn: () => createConversation("New Chat"),
+    onSuccess: (conversation) => {
+      void queryClient.invalidateQueries({ queryKey: queryKeys.conversation.all })
+      router.push(`/c/${conversation.id}`)
+    },
+  })
+}
+
+export function useDeleteConversation() {
+  const queryClient = useQueryClient()
+  const router = useRouter()
+
+  return useMutation({
+    mutationFn: (conversationId: string) => deleteConversation(conversationId),
+    onMutate: async (conversationId) => {
+      await queryClient.cancelQueries({ queryKey: queryKeys.conversation.all })
+      const previousList = queryClient.getQueryData<conversationListItem[]>(
+        queryKeys.conversation.all
+      )
+
+      if (previousList) {
+        queryClient.setQueryData(
+          queryKeys.conversation.all,
+          previousList.filter((conversation) => conversation.id !== conversationId)
+        )
+      }
+
+      return { previousList, conversationId }
+    },
+    onError: (_error, _variables, context) => {
+      if (!context) return
+      queryClient.setQueryData(queryKeys.conversation.all, context.previousList)
+    },
+    onSuccess: (_data, conversationId) => {
+      void queryClient.invalidateQueries({ queryKey: queryKeys.conversation.all })
+      void queryClient.removeQueries({
+        queryKey: queryKeys.messages.byConversation(conversationId),
+      })
+      if (window.location.pathname === `/c/${conversationId}`) {
+        router.push("/")
+      }
+    },
   })
 }
 
