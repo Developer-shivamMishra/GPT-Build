@@ -82,4 +82,4 @@ chapter 5: server actions and react queries
          -message hooks
          -useMessages.ts
 
-chapter 6: conversation list and details page
+chapter 6: setup sidebar and conversation UI
